@@ -5,7 +5,7 @@ public class Arrays {
 	public static void main(String[] args) {
 		// arrays (matrices, arreglos) : estructura de datos, almacena una misma clase de datos
 		
-		String nombre = "Raúl";
+		String nombre = "Raúl"; 
 		// Si ya conocemos los valores
 		String [] nombres = {"n1","n2","n3","n4","n5"};
 		
