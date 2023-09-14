@@ -10,7 +10,7 @@ public class Funciones2 {
 	
 	public void metodo4() {
 		
-		System.out.println("Metodo 3");
+		System.out.println("Metodo 4");
 
 	}
 
