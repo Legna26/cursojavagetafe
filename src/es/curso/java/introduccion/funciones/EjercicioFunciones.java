@@ -63,11 +63,11 @@ public class EjercicioFunciones {
 		switch(opcionFinal) {
 		case 1:
 			
-			System.out.println(Utilidades.pideDatoTexto()); break;
+			System.out.println(Utilidades.pideDatoTexto("Texto")); break;
 			
 		case 2:
 		
-			System.out.println(Utilidades.pideDatoNumerico()); break;
+			System.out.println(Utilidades.pideDatoNumerico("Número")); break;
 		
 		default: System.out.println("Opcion incorrecta");
 		}

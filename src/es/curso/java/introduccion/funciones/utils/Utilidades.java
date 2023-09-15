@@ -4,18 +4,18 @@ import java.util.Scanner;
 
 public class Utilidades {
 
-	public static String pideDatoTexto() {
+	public static String pideDatoTexto(String texto) {
 		
-		System.out.println("Indique texto: ");
+		System.out.println(texto);
 		Scanner scan = new Scanner(System.in);
 		String txt3 = scan.nextLine();
 				
 		return txt3;
 	}
 	
-	public static int pideDatoNumerico() {
+	public static int pideDatoNumerico(String texto) {
 		
-		System.out.println("Indique número: ");
+		System.out.println(texto);
 		Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
 			
