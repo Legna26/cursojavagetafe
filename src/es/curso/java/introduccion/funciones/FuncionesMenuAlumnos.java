@@ -7,16 +7,16 @@ public class FuncionesMenuAlumnos {
 	final static String [] OPCIONES = {"1. Insertar alumno nuevo.","2. Mostrar Alumnos por aula.","3. Mostrar todos los alumnos aprobados.","4. Buscar alumno.",
 			"5. Borrar alumno","6. Salir."};
 	
-	private static String [][] COLEGIO;
+	private static String [][] colegio;
 	
 	public static void main(String[] args) {
 		
 		int numAulas = Utilidades.pideDatoNumerico("¿Cuántas aulas hay en el colegio?");
-		COLEGIO = new String [numAulas][];	
+		colegio = new String [numAulas][];	
 		
-		for (int i = 0; i < COLEGIO.length; i++){	
+		for (int i = 0; i < colegio.length; i++){	
 			System.out.println("Aula" + (i+1));
-			COLEGIO [i] = new String [Utilidades.pideDatoNumerico("¿Cuántas alumnos hay en la aula?"+(i+1))];
+			colegio [i] = new String [Utilidades.pideDatoNumerico("¿Cuántas alumnos hay en la aula?"+(i+1))];
 		}
 		
 		int opcionFinal = 0;
@@ -66,7 +66,7 @@ public class FuncionesMenuAlumnos {
 	public static void inserteAlumno () {
 	
 	int numAula = Utilidades.pideDatoNumerico("¿En qué aula quieres insertarlo?");
-	String[] aula = COLEGIO[numAula-1];
+	String[] aula = colegio[numAula-1];
 	
 	boolean claseLlena = true;
 	for (int i = 0; i < aula.length; i++) {
@@ -92,10 +92,10 @@ public class FuncionesMenuAlumnos {
 	
 	public static void mostrarAlumno () {
 	
-	for (int i=0;i<COLEGIO.length;i++) {
+	for (int i=0;i<colegio.length;i++) {
 		System.out.println("Aula: "+(i+1));
-		for(int j=0;j<COLEGIO[i].length;j++) {
-			String datosAlumno = COLEGIO[i][j];
+		for(int j=0;j<colegio[i].length;j++) {
+			String datosAlumno = colegio[i][j];
 			if (datosAlumno!=null) {
 				String [] datosAlumnosArray = datosAlumno.split(":");
 				System.out.println("\t"+datosAlumnosArray[0]+ " " 
@@ -107,7 +107,7 @@ public class FuncionesMenuAlumnos {
 	
 	public static void mostrarAlumnosAprobados () {
 		
-		for (String [] aulaFE : COLEGIO) {
+		for (String [] aulaFE : colegio) {
 			for ( String datosAlumno : aulaFE ) {
 				if (datosAlumno!=null) {
 					String [] datosAlumnosArray = datosAlumno.split(":");
@@ -127,9 +127,9 @@ public class FuncionesMenuAlumnos {
 		String dni = Utilidades.pideDatoTexto("Introduce el dni del alumno a buscar");
 		
 		boolean alumnoEncontrado = false;
-		for (int i=0;i<COLEGIO.length && !alumnoEncontrado ;i++) {
-			for(int j=0;j<COLEGIO[i].length && !alumnoEncontrado  ;j++) {
-				String datosAlumno = COLEGIO[i][j];
+		for (int i=0;i<colegio.length && !alumnoEncontrado ;i++) {
+			for(int j=0;j<colegio[i].length && !alumnoEncontrado  ;j++) {
+				String datosAlumno = colegio[i][j];
 				//Me aseguro de que haya información en esa posición
 				if (datosAlumno!=null) {
 					String dniAlumno = datosAlumno.split(":")[1];
@@ -150,14 +150,14 @@ public class FuncionesMenuAlumnos {
 		String dni = Utilidades.pideDatoTexto("Introduce el dni del alumno a borrar");
 		
 		boolean alumnoEncontrado = false;
-		for (int i=0;i<COLEGIO.length && !alumnoEncontrado ;i++) {
-			for(int j=0;j<COLEGIO[i].length && !alumnoEncontrado  ;j++) {
-				String datosAlumno = COLEGIO[i][j];
+		for (int i=0;i<colegio.length && !alumnoEncontrado ;i++) {
+			for(int j=0;j<colegio[i].length && !alumnoEncontrado  ;j++) {
+				String datosAlumno = colegio[i][j];
 				//Me aseguro de que haya información en esa posición
 				if (datosAlumno!=null) {
 					String dniAlumno = datosAlumno.split(":")[1];
 					if (dni.equalsIgnoreCase(dniAlumno)) {
-						COLEGIO[i][j]=null;
+						colegio[i][j]=null;
 						alumnoEncontrado=true;
 						System.out.println("Alumno borrado");
 					}
