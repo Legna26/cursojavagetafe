@@ -25,34 +25,22 @@ public class FuncionesMenuAlumnos {
 		opcionFinal = Utilidades.pintarMenu(OPCIONES,"Introduce una opción:");
 		
 		switch(opcionFinal) {
-		case 1:
-			
-			inserteAlumno();
+		case 1: inserteAlumno();
 			break;
 		
-		case 2:
-			
-			mostrarAlumno();
+		case 2: mostrarAlumno();
 			break;
 			
-		case 3:
-			
-			mostrarAlumnosAprobados();
+		case 3: mostrarAlumnosAprobados();
 			break;
 			
-		case 4:
-			
-			buscarAlumno();
+		case 4: buscarAlumno();
 			break;
 			
-		case 5:
-			
-			borrarAlumno();
+		case 5: borrarAlumno();
 			break;
 			
-		case 6:
-			
-			System.out.println("Adios");
+		case 6: System.out.println("Adios");
 			break;
 		
 		default: System.out.println("Opcion incorrecta");
