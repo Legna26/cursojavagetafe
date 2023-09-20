@@ -1,6 +1,6 @@
 package es.curso.java.introduccion.funciones;
 
-import es.curso.java.introduccion.funciones.utils.Utilidades;
+import es.curso.java.utils.Utilidades;
 
 public class FuncionesMenuAlumnos {
 

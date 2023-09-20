@@ -1,51 +1,52 @@
 package es.curso.java.introduccion.funciones;
 
-import es.curso.java.introduccion.funciones.utils.Utilidades;
+import es.curso.java.utils.Utilidades;
 
 public class Calculadora {
 
+	final static String MENU  = "1. Suma:"
+			+ "2. Resta:"
+			+ "3. Multiplicación:"
+			+ "4. División:"
+			+ "5. Científica:"
+			+ "6. Apagar";
+	
+	final static String MENU2 = "1. Potencia:"
+			+ "2. Raíz Cuadrada:"
+			+ "3. Seno:"
+			+ "4. Coseno:"
+			+ "5. Volver";
+			
 	public static void main(String[] args) {
-		String menu = "1. Suma:"
-				+ "2. Resta:"
-				+ "3. Multiplicación:"
-				+ "4. División:"
-				+ "5. Científica:"
-				+ "6. Apagar";
 		
-		String menu2 = "1. Potencia:"
-				+ "2. Raíz Cuadrada:"
-				+ "3. Seno:"
-				+ "4. Coseno:"
-				+ "5. Volver";
-				
 		int opcion = 0;
 		int opcion2 = 0;
 		double numero = 0;
 		do {
 		
-		opcion = Utilidades.pintarMenu(menu);
+		opcion = Utilidades.pintarMenu(MENU);
 		
 		switch(opcion) {
 		
 			case 1: 
-				numero = suma(numero);
+				numero = operar(numero, "sumar");
 				break;
 			
 			case 2:
-				numero = resta(numero);
+				numero = operar(numero, "restar");
 				break;
 			
 			case 3:
-				numero = multi(numero);
+				numero = operar (numero, "multiplicar");
 				break;
 			
 			case 4: 
-				numero = division(numero);
+				numero = operar(numero,"dividir");
 				break;
 				
 			case 5: 
 				do {
-					opcion2 = Utilidades.pintarMenu(menu2);
+					opcion2 = Utilidades.pintarMenu(MENU2);
 					switch(opcion2) {
 						case 1:
 							numero = potencia(numero);
@@ -64,7 +65,7 @@ public class Calculadora {
 							break;
 							
 						case 5:
-							opcion = Utilidades.pintarMenu(menu);
+							opcion = Utilidades.pintarMenu(MENU);
 							break;
 					}
 					}while(opcion2!=5);
@@ -79,37 +80,53 @@ public class Calculadora {
 		} while(opcion!=6);
 	}
 	
-	public static double suma (double num) {
-		
-		double num1 = Utilidades.pideDatoNumerico("Inserte número a sumar: ");
-		double suma = num + num1;
-		System.out.println(num + " + " + num1 + " = " + suma);
-		return suma;
+	public static double operar (double num , String operacion) {
+		 int num1 = Utilidades.pideDatoNumerico("Inserte número a  " + operacion);
+		 
+		 switch (operacion) {
+		 
+		 case "sumar": num += num1; break;
+		 case "restar": num -= num1; break;
+		 case "multiplicar": num *= num1; break;
+		 case "dividir": num /= num1; break;
+		 
+		 }
+		 System.out.println("Resultado: " + num);
+		 
+		return num;
 	}
 	
-	public static double resta (double num) {
-		
-		double num1 = Utilidades.pideDatoNumerico("Inserte número a restar: ");
-		double resta = num - num1;
-		System.out.println(num + " - " + num1 + " = " + resta);
-		return resta;
-	}
-	
-	public static double multi (double num) {
-		
-		double num1 = Utilidades.pideDatoNumerico("Inserte número a multiplicar: ");
-		double multi = num * num1;
-		System.out.println(num + " * " + num1 + " = " + multi);
-		return multi;
-	}
-	
-	public static double division (double num) {
-		
-		double num1 = Utilidades.pideDatoNumerico("Inserte número a dividir: ");
-		double div = num / num1;
-		System.out.println(num + " :  " + num1 + " = " +div);
-		return div;
-	}
+//	public static double suma (double num) {
+//		
+//		double num1 = Utilidades.pideDatoNumerico("Inserte número a sumar: ");
+//		num += num1;
+//		System.out.println(num + " + " + num1 + " = " + num);
+//		return num;
+//	}
+//	
+//	public static double resta (double num) {
+//		
+//		double num1 = Utilidades.pideDatoNumerico("Inserte número a restar: ");
+//		double resta = num - num1;
+//		System.out.println(num + " - " + num1 + " = " + resta);
+//		return resta;
+//	}
+//	
+//	public static double multi (double num) {
+//		
+//		double num1 = Utilidades.pideDatoNumerico("Inserte número a multiplicar: ");
+//		double multi = num * num1;
+//		System.out.println(num + " * " + num1 + " = " + multi);
+//		return multi;
+//	}
+//	
+//	public static double division (double num) {
+//		
+//		double num1 = Utilidades.pideDatoNumerico("Inserte número a dividir: ");
+//		double div = num / num1;
+//		System.out.println(num + " :  " + num1 + " = " +div);
+//		return div;
+//	}
 
 	public static double potencia (double num) {
 		

@@ -1,4 +1,4 @@
-package es.curso.java.introduccion.funciones.utils;
+package es.curso.java.utils;
 
 import java.util.Scanner;
 

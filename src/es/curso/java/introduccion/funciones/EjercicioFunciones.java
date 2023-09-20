@@ -2,7 +2,7 @@ package es.curso.java.introduccion.funciones;
 
 import java.util.Scanner;
 
-import es.curso.java.introduccion.funciones.utils.Utilidades;
+import es.curso.java.utils.Utilidades;
 
 public class EjercicioFunciones {
 
