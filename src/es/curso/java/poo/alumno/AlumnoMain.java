@@ -4,31 +4,37 @@ public class AlumnoMain {
 
 	public static void main(String[] args) {
 		
-		Alumno p1 = new Alumno ();
-		p1.nombre = "Eva";
-		p1.apellidos = "Perez";
-		p1.dni = "A123";
-		p1.nota = 10;
+		Alumno a1 = new Alumno ();
+		a1.setNombre("Eva");
+		a1.setApellidos("Perez");
+		a1.setDni("A123");
+		a1.setNota(10);
 		
-		Alumno p2 = new Alumno("Ben" , "Cuadros" , "B2345");
-		Alumno p3 = new Alumno("Carl" , "Torres" , "C456" , 5);
+		Alumno a2 = new Alumno("Ben" , "Cuadros" , "B235");
+		a2.setNota (4);
+		Alumno a3 = new Alumno("Carl" , "Torres" , "C456" , 5);
 		
-		p1.estudiar();
-		p2.estudiar();
-		p3.estudiar();
+		a1.estudiar();
+		a2.estudiar();
+		a3.estudiar();
 		
-		Alumno [] alumnos = {p1 , p2 , p3} ;
+		Alumno [] alumnos = {a1 , a2 , a3} ;
 		
-		alumnosAprobados(alumnos);
+		AlumnoMain am = new AlumnoMain();
+		am.alumnosAprobados(alumnos);
 		
 	}
 	
-	public static void alumnosAprobados (Alumno [] alumnos) {
+	public  void alumnosAprobados (Alumno [] alumnos) {
 		System.out.println("Los alumnos aprobados son: ");
-		for ( int i=0 ; i<alumnos.length ; i++) {
-			int nota = alumnos[i].nota;
-			if (nota>=5) {
-			System.out.println(alumnos [i] );
+		for ( Alumno alumno : alumnos) {
+			
+			if (alumno.getNota()>=5) {
+				System.out.println(alumno.getDni());
+				System.out.println(alumno.getNombre());
+				System.out.println(alumno.getApellidos());
+				System.out.println(alumno.getNota());
+				System.out.println("==========================");
 			}
 		}
 	}
