@@ -22,6 +22,15 @@ public class Utilidades {
 		return num;
 	}
 	
+	public static double pideDatoNumericoDouble(String texto) {
+		
+		System.out.println(texto);
+		Scanner scan = new Scanner(System.in);
+		double num = scan.nextInt();
+			
+		return num;
+	}
+	
 	public static int pintarMenu(String menu) {
 		return pintarMenu(menu, "Selecciona una opción:",":");
 	}
