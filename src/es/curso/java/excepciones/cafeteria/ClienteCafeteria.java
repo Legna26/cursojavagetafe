@@ -17,19 +17,18 @@ public class ClienteCafeteria {
 		this.nombre = nombre;
 	}
 	
-	public void tomarTazaCafe (CoffeCup taza) throws TemperatureException {
-		double temperatura = taza.getTemperatura();
+	void tomarTazaCafe (CoffeCup taza) throws TooHotTemperatureException , TooColdTemperatureException  {
 		
-		if (temperatura > 80 ) {
+		if (taza.getTemperatura() > 80 ) {
 			
-			throw new TooHotTemperatureException ();
+			throw new TooHotTemperatureException ("El café está muy caliente");
+					
+		} else if (taza.getTemperatura() < 20) {
 			
-		} else if (temperatura < 20) {
-			
-			throw new TooColdTemperatureException ();
+			throw new TooColdTemperatureException ("El cafés está muy frío");
 			
 		} else {
-			System.out.println("El cliente se esta tomando la taza de café a " +temperatura + " grados");
+			System.out.println("El cliente " + this.nombre + " se esta tomando la taza de café a " + taza.getTemperatura() + " grados");
 		}
 	}
 	

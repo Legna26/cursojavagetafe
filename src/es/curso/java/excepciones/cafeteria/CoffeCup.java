@@ -13,9 +13,6 @@ public class CoffeCup {
 		return temperatura;
 	}
 
-	public void setTemperatura(double temperatura) {
-		this.temperatura = temperatura;
-	}
 	
 	
 	

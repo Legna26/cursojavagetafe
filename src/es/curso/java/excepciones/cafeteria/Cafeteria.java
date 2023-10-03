@@ -11,36 +11,40 @@ public class Cafeteria {
 		this.nombre = nombre;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
-		
-		try {
-		abrirCafeteria();
-		} catch (TemperatureException t) {
-			System.out.println("El clientes se quejó: " + t.getMessage());
-		}
+		Cafeteria caf = new Cafeteria("La Cafetería");
+	
+		caf.abrirCafeteria();
+	
 	}
 	
-	public static void abrirCafeteria () throws TemperatureException {
-		
-		Random rd1 = new Random();
-		double randomTemp = rd1.nextInt(1,100);
-		
-		CoffeCup tazaCafe = new CoffeCup(randomTemp);
-		
-		ClienteCafeteria cliente = new ClienteCafeteria("Eva");
-		
-		cliente.tomarTazaCafe(tazaCafe);
+	private void abrirCafeteria () {
 		
 		
+		boolean clienteSatisfecho;
+		do {
+			clienteSatisfecho = true;
+			
+			Random rd = new Random();
+			double randomTemp = rd.nextInt(1,100);
+			
+			CoffeCup tazaCafe = new CoffeCup(randomTemp);
+			
+			ClienteCafeteria cliente = new ClienteCafeteria("Eva");
+			
+			try {
+				cliente.tomarTazaCafe(tazaCafe);
+			} catch (TooHotTemperatureException e) {
+				clienteSatisfecho = false;
+				System.out.println("El clientes se ha quemado, quiere otro café");
+				continue;
+			} catch (TooColdTemperatureException t) {
+				clienteSatisfecho = false;
+				System.out.println("El clientes se quejó, el café está muy frío");
+				continue;
+			}
+		} while (!clienteSatisfecho);
 		
 	}
 
