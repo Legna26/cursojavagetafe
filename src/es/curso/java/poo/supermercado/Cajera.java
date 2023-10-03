@@ -26,5 +26,20 @@ public class Cajera {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	@Override
+	public String toString() {
+		return "Cajera [id=" + id + ", nombre=" + nombre + "]";
+	}
 	
+	public double cobrar (Cliente cliente) { 
+		System.out.println("Cajera " + this.nombre + " cobrando al cliente " + cliente.getNombre());
+		double importe = 0;
+		
+		for (Producto p : cliente.getCarritoCompra()) {
+			importe += p.getPrecio();
+		}
+		
+		return cliente.isVip()?importe*0.85:importe;
+	}
 }
