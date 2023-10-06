@@ -43,6 +43,14 @@ public class Doctor extends EmpleadoHospital {
 		
 		return enfermoNuevo;
 	}
+
+	@Override
+	public void fichar() {
+		
+		System.out.println("El doctor "+ getNombre() + " esta fichando.");	
+		
+	}
 	
 
+	
 }

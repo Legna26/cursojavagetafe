@@ -29,6 +29,6 @@ public class Hospital {
 		
 		Enfermero enf1 = new Enfermero (453, "Kurt", 37, "Medicina General");
 		
-		//enf1.fichar(pac1, pac2);
+		
 	}
 }

@@ -1,6 +1,6 @@
 package es.curso.java.herencia.hospital;
 
-public class EmpleadoHospital extends Persona {
+public abstract class EmpleadoHospital extends Persona {
 
 	private String turno;
 	
@@ -34,9 +34,7 @@ public class EmpleadoHospital extends Persona {
 		System.out.println("El empleado "+ getNombre() + " esta comiendo en la comedor.");
 	}
 
-	public void fichar() {
-		System.out.println("El empleado "+ getNombre() + " esta fichando.");	
-	}
+	public abstract void fichar();
 	
 	
 	

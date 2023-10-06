@@ -33,11 +33,19 @@ public class Enfermero extends EmpleadoHospital {
 		this.planta = planta;
 	}
 
-
+	
 	public void atenderPaciente(Paciente... pacientes) {
 		for (Paciente paciente : pacientes) {
 			System.out.println("El enfermero "+ getNombre() + " esta atendiendo al paciente " + paciente.getNombre());	
 		}
+	}
+
+
+	@Override
+	public void fichar() {
+		
+		System.out.println("El enfermero "+ getNombre() + " esta fichando.");	
+	
 	}
 	
 }
