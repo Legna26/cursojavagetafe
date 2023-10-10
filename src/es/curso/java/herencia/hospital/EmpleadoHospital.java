@@ -34,7 +34,9 @@ public abstract class EmpleadoHospital extends Persona {
 		System.out.println("El empleado "+ getNombre() + " esta comiendo en la comedor.");
 	}
 
-	public abstract void fichar();
+	public void fichar() {
+		System.out.println("El empleado " + this.getNombre() + " esta fichando");
+	}
 	
 	
 	

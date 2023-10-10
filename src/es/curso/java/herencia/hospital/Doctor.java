@@ -11,8 +11,8 @@ public class Doctor extends EmpleadoHospital {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Doctor(long id, String nombre, int edad, String especialidad) {
-		super(id, nombre, edad);
+	public Doctor(long id, String nombre, int edad, String turno, String especialidad) {
+		super(id, nombre, edad, turno);
 		this.especialidad = especialidad;
 	}
 	/**
@@ -32,13 +32,17 @@ public class Doctor extends EmpleadoHospital {
 	public Enfermo diagnosticarPaciente (Paciente paciente) {
 		
 		Random rd = new Random();
-		double randomEnfermedad = rd.nextInt(1,10);
+		int randomEnfermedad = rd.nextInt(1,10);
 		
+		System.out.println("El grado de enfermedad es: " + randomEnfermedad);
 		Enfermo enfermoNuevo = null;
 		
-		if(randomEnfermedad>8) {
+		if(randomEnfermedad>=8) {
 			System.out.println("El paciente " + paciente.getNombre() + " está enfermo.");
 			enfermoNuevo = new Enfermo (paciente.getId(), paciente.getNombre(), paciente.getEdad());
+		} else {
+			System.out.println("El paciente " + paciente.getNombre() + " no está enfermo.");
+			enfermoNuevo = null;
 		}
 		
 		return enfermoNuevo;

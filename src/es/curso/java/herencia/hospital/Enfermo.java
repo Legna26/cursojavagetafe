@@ -14,6 +14,11 @@ public class Enfermo extends Persona {
 		this.enfermedad = enfermedad;
 	}
 	
+	public Enfermo (Paciente paciente, String enfermedad) {
+		super (paciente.getId(), paciente.getNombre(), paciente.getEdad());
+		this.enfermedad = enfermedad;
+	}
+	
 	/**
 	 * @return the enfermedad
 	 */
