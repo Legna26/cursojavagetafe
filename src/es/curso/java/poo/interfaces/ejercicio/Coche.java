@@ -32,12 +32,14 @@ public class Coche extends Vehiculo {
 	public void encender() {
 		// TODO Auto-generated method stub
 		System.out.println("El coche está encendido.");
+		setEncendido(true);
 	}
 
 	@Override
 	public void apagar() {
 		// TODO Auto-generated method stub
 		System.out.println("El coche está apagado.");
+		setEncendido(false);
 	}
 	
 	

@@ -1,13 +1,13 @@
 package es.curso.java.poo.interfaces.ejercicio;
 
-public abstract class DispositivoElectronico implements SistemaEncendido {
+public abstract class DispositivoElectronico extends ProductoElectronico {
 
 	private int id;
 	private double precio;
 	private String fabricante;
 	
 	public DispositivoElectronico(int id, double precio, String fabricante) {
-		super();
+		super(false);
 		this.id = id;
 		this.precio = precio;
 		this.fabricante = fabricante;
