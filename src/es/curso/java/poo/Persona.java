@@ -18,8 +18,23 @@ public class Persona {
 		this.nombre = nombre;
 	}
 	
+	
 	//métodos
 	
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public void correr() {
 		System.out.println("La persona con nombre " + nombre + " y edad " + edad + " está corriendo:");
 		if (edad<25) {
