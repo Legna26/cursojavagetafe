@@ -1,0 +1,28 @@
+Ser vivo -> clase padre
+	nombre
+	edad
+	puntos de vida
+	
+
+	
+Especies -> clases hijas
+	tipo
+	puntos de ataque
+	puntos de defensa
+	
+	método atacar ()
+	método defender ()
+	
+Clase terrícola
+	defiensa especial
+	
+Clase marciano
+	Ataque especial
+
+Nave -> Clase padre
+	Especies []
+	puntos de ataque
+	
+nave niveles -> clases hijas
+	nivel
+	
