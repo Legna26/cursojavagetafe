@@ -1,28 +1,67 @@
 package guerra.de.especies;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class VehiculoGuerra implements Tripulable {
+import guerra.de.especies.excepciones.LimiteValoresException;
+import guerra.de.especies.excepciones.UnidadesPermitidasException;
 
-	private int puntosVida;
+public abstract class VehiculoGuerra implements Tripulable {
+
+	private String nombre;
+	int puntosVida = PUNTOS_VIDA;
 	private int ataque;
 	private int defensa;
-	private List<Guerrero> listaGuerreros;
+	private List<Guerrero> guerreros = new ArrayList<Guerrero>();
 	
 	
+	private VehiculoGuerra(int ataque, int defensa) throws LimiteValoresException {
+		
+		if(ataque+defensa>10) {
+			throw new LimiteValoresException ("La suma de ataque y defensa no pude ser superior a 10");
+		}else {
+			this.ataque = ataque;
+			this.defensa = defensa;
+		}
+		
+	}
 	
-	public VehiculoGuerra(int puntosVida, int ataque, int defensa, List<Guerrero> listaGuerreros) {
-		super();
-		this.puntosVida = 1000;
-		this.ataque = 5;
-		this.defensa = 5;
-		this.listaGuerreros = listaGuerreros;
+	public VehiculoGuerra(String nombre, int ataque, int defensa) throws LimiteValoresException {
+		this(ataque, defensa);
+		this.nombre = nombre;
+	}
+	
+	
+	/**
+	 * Inicializa la nave con los valores de ataque y defensa en 5
+	 * *@param nombre
+	 */
+	public VehiculoGuerra(String nombre) throws LimiteValoresException {
+		this(5,5);		
+		this.nombre = nombre;
+	}
+
+	
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
 	}
 
 	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	
+	/**
 	 * @return the puntosVida
 	 */
-	public int getPuntosVida() {
+	int getPuntosVida() {
 		return puntosVida;
 	}
 
@@ -61,36 +100,44 @@ public class VehiculoGuerra implements Tripulable {
 		this.defensa = defensa;
 	}
 
-	/**
-	 * @return the lista
-	 */
-	public List<Guerrero> getLista() {
-		return listaGuerreros;
-	}
-
-	/**
-	 * @param lista the lista to set
-	 */
-	public void setLista(List<Guerrero> listaGuerreros) {
-		this.listaGuerreros = listaGuerreros;
-	}
-
-	@Override
-	public int atacar() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int defender(int puntoAtaque) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public void embarcar(Guerrero ...guerreros) {
-		// TODO Auto-generated method stub
+	
+	public void embarcarGuerrero (Guerrero guerrero) throws UnidadesPermitidasException {
+		
+		if (this.guerreros.size()<10) {
+			this.guerreros.add(guerrero);
+		} else {
+			throw new UnidadesPermitidasException("Has superado el numero máximo establecido en 10.");
+		}
 		
 	}
+	
 
+	public double atacar() {
+		
+		Random rd = new Random();
+		int atq = rd.nextInt(0,1);
+		double atqGuerrero = rd.nextDouble(0,0.5);
+		
+		int sumaAtaqueGuerreros = ((VehiculoGuerra) guerreros).getAtaque();
+		
+		double puntoAtaque = atq*this.ataque + sumaAtaqueGuerreros * atqGuerrero;
+		return puntoAtaque;
+	}
+	
+	@Override
+	public double defender(double puntoAtaque) {
+		// TODO Auto-generated method stub
+		Random rd = new Random();
+		int def = rd.nextInt(0,1);
+		double defGuerrero = rd.nextDouble(0,0.5);
+		
+		int sumaAtaqueGuerreros = ((VehiculoGuerra) guerreros).getAtaque();
+		
+		double puntoDefensa = def*this.defensa + sumaAtaqueGuerreros * defGuerrero;
+		
+		return 0;
+	}
+	
+	
 	
 }

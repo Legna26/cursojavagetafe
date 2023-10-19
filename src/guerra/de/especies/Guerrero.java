@@ -1,18 +1,26 @@
 package guerra.de.especies;
 
+import guerra.de.especies.excepciones.LimiteValoresException;
+
 public class Guerrero {
 
 	private String nombre;
 	private String tipo;
-	private int fuerza;
-	private int resistencia;
+	private double fuerza;
+	private double resistencia;
 	
-	public Guerrero(String nombre, String tipo, int fuerza, int resistencia) {
+	public Guerrero(String nombre, String tipo, int fuerza, int resistencia) throws LimiteValoresException {
 		super();
 		this.nombre = nombre;
 		this.tipo = tipo;
-		this.fuerza = fuerza;
-		this.resistencia = resistencia;
+		
+		if (fuerza + resistencia > 10) {
+			throw new LimiteValoresException ("La suma de fuerza y resistencia no pude ser superior a 10.");
+		} else {
+			this.fuerza = fuerza;
+			this.resistencia = resistencia;
+		}
+		
 	}
 
 	/**
@@ -46,28 +54,28 @@ public class Guerrero {
 	/**
 	 * @return the fuerza
 	 */
-	public int getFuerza() {
+	public double getFuerza() {
 		return fuerza;
 	}
 
 	/**
 	 * @param fuerza the fuerza to set
 	 */
-	public void setFuerza(int fuerza) {
+	void setFuerza(int fuerza) {
 		this.fuerza = fuerza;
 	}
 
 	/**
 	 * @return the resistencia
 	 */
-	public int getResistencia() {
+	public double getResistencia() {
 		return resistencia;
 	}
 
 	/**
 	 * @param resistencia the resistencia to set
 	 */
-	public void setResistencia(int resistencia) {
+	void setResistencia(int resistencia) {
 		this.resistencia = resistencia;
 	}
 	
