@@ -100,7 +100,13 @@ public abstract class VehiculoGuerra implements Tripulable {
 		this.defensa = defensa;
 	}
 
-	
+	/**
+	 * @return the guerreros
+	 */
+	public List<Guerrero> getGuerreros() {
+		return guerreros;
+	}
+
 	public void embarcarGuerrero (Guerrero guerrero) throws UnidadesPermitidasException {
 		
 		if (this.guerreros.size()<10) {
@@ -112,31 +118,7 @@ public abstract class VehiculoGuerra implements Tripulable {
 	}
 	
 
-	public double atacar() {
-		
-		Random rd = new Random();
-		int atq = rd.nextInt(0,1);
-		double atqGuerrero = rd.nextDouble(0,0.5);
-		
-		int sumaAtaqueGuerreros = ((VehiculoGuerra) guerreros).getAtaque();
-		
-		double puntoAtaque = atq*this.ataque + sumaAtaqueGuerreros * atqGuerrero;
-		return puntoAtaque;
-	}
 	
-	@Override
-	public double defender(double puntoAtaque) {
-		// TODO Auto-generated method stub
-		Random rd = new Random();
-		int def = rd.nextInt(0,1);
-		double defGuerrero = rd.nextDouble(0,0.5);
-		
-		int sumaAtaqueGuerreros = ((VehiculoGuerra) guerreros).getAtaque();
-		
-		double puntoDefensa = def*this.defensa + sumaAtaqueGuerreros * defGuerrero;
-		
-		return 0;
-	}
 	
 	
 	

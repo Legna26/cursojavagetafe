@@ -2,11 +2,11 @@ package guerra.de.especies;
 
 public interface Tripulable {
 
-	int PUNTOS_VIDA = 1000;
+	int PUNTOS_VIDA = 100;
 	
 	
-	double atacar();
-	double defender(double puntoAtaque);
+	int atacar();
+	int defender(int puntoAtaque);
 	
 	
 }

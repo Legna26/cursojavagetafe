@@ -6,8 +6,8 @@ public class Guerrero {
 
 	private String nombre;
 	private String tipo;
-	private double fuerza;
-	private double resistencia;
+	private int fuerza;
+	private int resistencia;
 	
 	public Guerrero(String nombre, String tipo, int fuerza, int resistencia) throws LimiteValoresException {
 		super();
@@ -54,7 +54,7 @@ public class Guerrero {
 	/**
 	 * @return the fuerza
 	 */
-	public double getFuerza() {
+	public int getFuerza() {
 		return fuerza;
 	}
 
@@ -68,7 +68,7 @@ public class Guerrero {
 	/**
 	 * @return the resistencia
 	 */
-	public double getResistencia() {
+	public int getResistencia() {
 		return resistencia;
 	}
 
