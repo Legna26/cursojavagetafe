@@ -11,7 +11,7 @@ public class NaveTerricola extends VehiculoGuerra {
 	}
 	
 	public NaveTerricola(String nombre) throws LimiteValoresException {
-		super(nombre, 5, 5);
+		super(nombre, 3, 7);
 	}
 
 	@Override
@@ -56,10 +56,10 @@ public class NaveTerricola extends VehiculoGuerra {
 		
 		int puntosDescuento = 0;
 		if (puntoAtaque>puntoDefensa) {
-			puntosDescuento = puntoAtaque-puntoDefensa;
+			puntosDescuento = puntoAtaque*2;
 			System.out.println("La nave terrícola recibe un daño de " + puntosDescuento + " puntos");
-		} else if (puntoAtaque < puntoDefensa ) {
-			puntosDescuento = puntoAtaque-puntoDefensa;
+		} else if (puntoAtaque == puntoDefensa ) {
+			puntosDescuento = (puntoAtaque-puntoDefensa)*2;
 			System.out.println("La nave terrícola recibe una regeneración de " + (puntosDescuento*-1) + " puntos");
 		} else {
 			puntosDescuento = 0;

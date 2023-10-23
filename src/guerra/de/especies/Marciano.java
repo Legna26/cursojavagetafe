@@ -9,4 +9,7 @@ public class Marciano extends Guerrero {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Marciano(String nombre, int fuerza, int resistencia ) throws LimiteValoresException {
+		super(nombre, "Marciano", fuerza, resistencia);
+	}
 }

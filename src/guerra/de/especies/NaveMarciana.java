@@ -57,13 +57,13 @@ public class NaveMarciana extends VehiculoGuerra {
 		
 		int puntosDescuento = 0;
 		if (puntoAtaque>puntoDefensa) {
-			puntosDescuento = puntoAtaque;
+			puntosDescuento = (puntoAtaque-puntoDefensa)*4;
 			System.out.println("La nave marciana recibe un daño de " + puntosDescuento + " puntos");
 			
 		} else if (puntoAtaque==puntoDefensa) {
 			
-			puntosDescuento = puntoAtaque-puntoDefensa;
-			System.out.println("La nave marciana recibe un daño menor de " + puntosDescuento + " puntos");
+			puntosDescuento = (puntoAtaque-puntoDefensa)*2;
+			System.out.println("La nave marciana recibe regeneración de " + (puntosDescuento*-1) + " puntos");
 		
 		} else {
 			puntosDescuento = 0;
