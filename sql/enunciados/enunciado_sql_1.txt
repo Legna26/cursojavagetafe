@@ -1,0 +1,31 @@
+- Creamos base de datos curso
+
+- Creamos nueva conexion a esa base de datos en SQL Developer
+
+BASE DE DATOS
+===================================================================
+Se desea tener una base de datos con la información de 
+instalaciones/edificios 
+
+TB_FACILITIES
+-Información acerca de las plantas, nombre, categoria, descripción, 
+	GUID (Global Unique identifier), altura.
++ Todas las columnas con comentarios
+
+	id          number, PK, AUTO_INCREMENT
+    guid        number(7) UNIQUE,
+    name        varchar(45) not null,
+    description varchar(200),
+    category    varchar(45),
+    address     varchar(200),
+    heigth		decimal (5,2)
+    
+    
+    INSERTS 5-6 
+    
+    SELECT
+    
+    SELECT para mostrar todos los facilities que tengan más de 100 m 
+    
+    
+

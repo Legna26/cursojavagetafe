@@ -119,6 +119,15 @@ public class Facility {
 	public void setHeigth(double heigth) {
 		this.heigth = heigth;
 	}
+
+	@Override
+	public String toString() {
+		return "Facility [id=" + id + ", guid=" + guid + ", " + (name != null ? "name=" + name + ", " : "")
+				+ (description != null ? "description=" + description + ", " : "")
+				+ (category != null ? "category=" + category + ", " : "")
+				+ (address != null ? "address=" + address + ", " : "") + "heigth=" + heigth + "]";
+	}
+	
 	
 	
 
