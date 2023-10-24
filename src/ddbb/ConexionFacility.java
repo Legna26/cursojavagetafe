@@ -5,17 +5,19 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
-public class ConexionBaseDeDatos {
-	
-	
+public class ConexionFacility {
+
 	public static void main(String[] args) {
-		ConexionBaseDeDatos conexion = new ConexionBaseDeDatos();
-		conexion.conecta();
-		
+		ConexionFacility conexion = new ConexionFacility();
+		Set<Facility> facilities = conexion.crearSet();
+		System.out.println(facilities.size());
 	}
-	
-	private void conecta() {
+
+	private Set<Facility> crearSet() {
+		
 		String url = "jdbc:mysql://localhost:3306/mysql?serverTimezone=Europe/Madrid";
 	    String username = "root";
 	    String password = "password";
@@ -24,23 +26,20 @@ public class ConexionBaseDeDatos {
 	    Statement stmt = null; //Lanzar consulta
 	    ResultSet rs = null; //Recoger datos de la consulta
 	    
-		try {
-			System.out.println("Estableciendo conexión");
+	    Set<Facility> facilities = new HashSet<Facility>();
+	    
+	    try {
+	    	System.out.println("Estableciendo conexión");
 			connection = DriverManager.getConnection(url, username, password);
 			System.out.println("Conexión establecida");
 			stmt = connection.createStatement();
 			
 			rs = stmt.executeQuery("SELECT * FROM TB_FACILITIES");
 			while (rs.next()) {
-				System.out.println(rs.getLong("id"));
-				System.out.println(rs.getInt("guid"));
-				System.out.println(rs.getString("name"));
-				System.out.println(rs.getString("description"));
-				System.out.println(rs.getString("category"));
-				System.out.println("===============================");
-            }		
-			
-		} catch (SQLException e) {
+				Facility f = new Facility (rs.getLong("id"), rs.getInt("guid"), rs.getString("name"), rs.getString("description"), rs.getString("category"), rs.getString("address"), rs.getDouble("heigth"));
+				facilities.add(f);
+			}
+	    } catch (SQLException e) {
 			System.err.println("Ha habido un error "+e.getMessage());
 //			e.printStackTrace();
 		}finally {
@@ -53,6 +52,7 @@ public class ConexionBaseDeDatos {
 				e.printStackTrace();
 			}
 		}
-		
+	    
+		return facilities;
 	}
 }
