@@ -6,6 +6,14 @@ import guerra.de.especies.excepciones.LimiteValoresException;
 
 public class NaveMarciana extends VehiculoGuerra {
 
+	private String tipo;
+	
+	
+	public NaveMarciana(String nombre, int ataque, int defensa, String tipo) throws LimiteValoresException {
+		super(nombre, ataque, defensa);
+		this.tipo = tipo;
+	}
+
 	public NaveMarciana(String nombre, int ataque, int defensa) throws LimiteValoresException {
 		super(nombre, ataque, defensa);
 		// TODO Auto-generated constructor stub
@@ -71,6 +79,14 @@ public class NaveMarciana extends VehiculoGuerra {
 		}
 		
 		return puntosDescuento;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }

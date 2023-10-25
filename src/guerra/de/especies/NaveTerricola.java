@@ -6,12 +6,36 @@ import guerra.de.especies.excepciones.LimiteValoresException;
 
 public class NaveTerricola extends VehiculoGuerra {
 
+	private String tipo;
+	
+	
+	public NaveTerricola(String nombre, int ataque, int defensa, String tipo) throws LimiteValoresException {
+		super(nombre, ataque, defensa);
+		this.tipo = tipo;
+	}
+
 	public NaveTerricola(String nombre, int ataque, int defensa) throws LimiteValoresException {
 		super(nombre, ataque, defensa);
 	}
 	
 	public NaveTerricola(String nombre) throws LimiteValoresException {
 		super(nombre, 3, 7);
+	}
+	
+	
+
+	/**
+	 * @return the tipo
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

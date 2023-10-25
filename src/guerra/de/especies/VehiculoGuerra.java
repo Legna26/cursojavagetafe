@@ -10,9 +10,9 @@ import guerra.de.especies.excepciones.UnidadesPermitidasException;
 public abstract class VehiculoGuerra implements Tripulable {
 
 	private String nombre;
-	int puntosVida = PUNTOS_VIDA;
 	private int ataque;
 	private int defensa;
+	int puntosVida = PUNTOS_VIDA;
 	private List<Guerrero> guerreros = new ArrayList<Guerrero>();
 	
 	

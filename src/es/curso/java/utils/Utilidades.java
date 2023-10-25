@@ -1,5 +1,10 @@
 package es.curso.java.utils;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Utilidades {
@@ -49,5 +54,20 @@ public class Utilidades {
 		return opc;
 				
 	}
+	
+	public static Connection conexionBaseDatos () throws SQLException {
+		
+		String url = "jdbc:mysql://localhost:3306/mysql?serverTimezone=Europe/Madrid";
+	    String username = "root";
+	    String password = "password";
+	    
+	    Connection connection = DriverManager.getConnection(url, username, password); //Conexión con la base de datos
+	    
+	    return connection;
+	}
 
+	public static void desconexionBaseDatos(Connection connection) throws SQLException {
+		
+		connection.close();
+	}
 }
