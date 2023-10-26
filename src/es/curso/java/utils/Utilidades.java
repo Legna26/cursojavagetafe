@@ -2,9 +2,7 @@ package es.curso.java.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 public class Utilidades {
@@ -55,19 +53,38 @@ public class Utilidades {
 				
 	}
 	
+	private static Connection connection;
+	
+	/**
+	 * Conexion por defecto a la base de datos curso de la maquina local.
+	 * @return Connection
+	 * @throws SQLException
+	 */
 	public static Connection conexionBaseDatos () throws SQLException {
 		
 		String url = "jdbc:mysql://localhost:3306/mysql?serverTimezone=Europe/Madrid";
 	    String username = "root";
 	    String password = "password";
 	    
-	    Connection connection = DriverManager.getConnection(url, username, password); //Conexión con la base de datos
+	    connection = conexionBaseDatos(url, username, password); //Conexión con la base de datos
 	    
 	    return connection;
 	}
 
-	public static void desconexionBaseDatos(Connection connection) throws SQLException {
+	
+	public static Connection conexionBaseDatos (String url, String userName, String password) throws SQLException {
 		
-		connection.close();
+		if (connection==null) {
+			connection = DriverManager.getConnection(url, userName, password);
+		}
+	    
+	     return connection;
+	}
+
+	public static void desconexionBaseDatos() throws SQLException {
+		if (connection!=null) {
+			connection.close();
+			connection=null;
+		}
 	}
 }

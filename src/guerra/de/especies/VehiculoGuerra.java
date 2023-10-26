@@ -9,6 +9,8 @@ import guerra.de.especies.excepciones.UnidadesPermitidasException;
 
 public abstract class VehiculoGuerra implements Tripulable {
 
+	private long id;
+	
 	private String nombre;
 	private int ataque;
 	private int defensa;
@@ -105,6 +107,20 @@ public abstract class VehiculoGuerra implements Tripulable {
 	 */
 	public List<Guerrero> getGuerreros() {
 		return guerreros;
+	}
+	
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public void embarcarGuerrero (Guerrero guerrero) throws UnidadesPermitidasException {

@@ -1,16 +1,13 @@
 package guerra.de.especies;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import ddbb.Facility;
+//import es.curso.java.colecciones.ejercicios.guerra.VehiculoGuerra;
 import es.curso.java.utils.Utilidades;
 import guerra.de.especies.excepciones.LimiteValoresException;
 import guerra.de.especies.excepciones.UnidadesPermitidasException;
@@ -30,11 +27,12 @@ public class GuerraMain2 {
 	
 	public void iniciarGuerra (VehiculoGuerra vehiculo) {
 		VehiculoGuerra miVehiculo = null ;
+		List <VehiculoGuerra> vehiculos = construyeNave();
 		try { 
 			if (Math.random()>0.5)
-				miVehiculo = construyeNaveTerricola();
+				miVehiculo = vehiculos.get(0);
 			else {
-				miVehiculo = construyeNaveMarciana();
+				miVehiculo = vehiculos.get(1);
 			}
 			batalla(vehiculo, miVehiculo);
 		} catch (LimiteValoresException | UnidadesPermitidasException e) {
@@ -47,15 +45,20 @@ public class GuerraMain2 {
 		
 		try { 
 			
-			VehiculoGuerra miVehiculo = construyeNaveTerricola();
-			VehiculoGuerra vehiculo = construyeNaveMarciana();
-			
-			batalla(miVehiculo, vehiculo);
+			List <VehiculoGuerra> vehiculos = construyeNave();
+					
+			batalla(vehiculos.get(0), vehiculos.get(1));
 		} catch (LimiteValoresException | UnidadesPermitidasException e) {
 			System.err.println();
 			e.printStackTrace();
 		}
  	}
+	
+	public void batalla (List<VehiculoGuerra> vehiculos) throws LimiteValoresException, UnidadesPermitidasException {
+	
+		batalla(vehiculos.get(0),vehiculos.get(1));
+		
+	}
 	
 	public void batalla (VehiculoGuerra vehiculo, VehiculoGuerra naveM) throws LimiteValoresException, UnidadesPermitidasException {
 			
@@ -95,86 +98,91 @@ public class GuerraMain2 {
 		
 	}
 	
-	private VehiculoGuerra construyeNaveTerricola() throws LimiteValoresException, UnidadesPermitidasException {
+	private List<VehiculoGuerra> construyeNave() {
 		
-		NaveTerricola nave = (NaveTerricola) BaseDatosVehiculos();
-				
-		for(Guerrero guerrero : generaGuerreros()) {
-			if(guerrero.getVehiculoId()==1) {
-			nave.embarcarGuerrero(guerrero);
+		List<VehiculoGuerra> vehiculos = null;
+		
+		try {
+			vehiculos = BaseDatosVehiculos();
+			generaGuerreros (vehiculos);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (LimiteValoresException e) {
+			e.printStackTrace();
+		} catch (UnidadesPermitidasException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				Utilidades.desconexionBaseDatos();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-		return nave;
-	}
-	
-	private VehiculoGuerra construyeNaveMarciana() throws LimiteValoresException, UnidadesPermitidasException {
-		
-		NaveMarciana nave = (NaveMarciana) BaseDatosVehiculos();
 				
-		for(Guerrero guerrero : generaGuerreros()) {
-			if(guerrero.getVehiculoId()==2) {
-			nave.embarcarGuerrero(guerrero);
-			}
-		}
-		return nave;
+		return vehiculos;
 	}
 	
-	private List<Guerrero> generaGuerreros () throws LimiteValoresException {
+	private void generaGuerreros (List<VehiculoGuerra> vehiculos) throws SQLException, LimiteValoresException, UnidadesPermitidasException {
 		
 		List<Guerrero> guerreros =null;
-		Guerrero guerrero = null;
-		
-		try (Connection connection = Utilidades.conexionBaseDatos();
+		Connection connection = Utilidades.conexionBaseDatos();
+		try (
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM TB_GUERREROS");
 			) {
 			
 			while (rs.next()) {
 				
-				if(rs.getString("tipo").equalsIgnoreCase("Terricola")) {
-					guerrero = new Terricola(rs.getString("nombre"), rs.getString("tipo"), rs.getInt("fuerza"), rs.getInt("resistencia"), rs.getInt("vehiculo_id"));
-				} else if (rs.getString("tipo").equalsIgnoreCase("Marciano")) {
-					guerrero = new Marciano(rs.getString("nombre"), rs.getString("tipo"), rs.getInt("fuerza"), rs.getInt("resistencia"), rs.getInt("vehiculo_id"));
-				} else {
-					System.out.println("No existe guerreros en la base de datos");
-				}
-			guerreros = Arrays.asList(guerrero);
-			}
-	    } catch (SQLException e) {
-			System.err.println("Ha habido un error "+e.getMessage());
-//			e.printStackTrace();
-		}
+				Guerrero guerrero = new Terricola(rs.getString("nombre"), rs.getString("tipo"), rs.getInt("fuerza"), rs.getInt("resistencia"), rs.getInt("vehiculo_id"));
 				
-		return guerreros;
+				for (VehiculoGuerra vehiculo : vehiculos) {
+					if(vehiculo.getId() == rs.getInt("vehiculo_id")) {
+						vehiculo.embarcarGuerrero(guerrero);
+						break;
+					}
+				}
+			
+			}
+	   
+		}	
+		
 				
 	}
  
-	private VehiculoGuerra BaseDatosVehiculos() throws LimiteValoresException {
+	private List<VehiculoGuerra> BaseDatosVehiculos() throws LimiteValoresException, SQLException {
 		
+		List<VehiculoGuerra> listaVehiculos = null;
 		VehiculoGuerra vg = null;
-	    try (
-				Connection connection = Utilidades.conexionBaseDatos();
+	    Connection connection = Utilidades.conexionBaseDatos();
+		
+		try (
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM TB_VEHICULOS_GUERRA");
 			)
 	    {
-	   
+			listaVehiculos = new ArrayList<VehiculoGuerra>();
 			while (rs.next()) {
+				
+				long id = rs.getLong("id");
 				
 				if(rs.getString("tipo").equalsIgnoreCase("Nave Terricola")) {
 					vg = new NaveTerricola (rs.getString("nombre"), rs.getInt("ataque"), rs.getInt("defensa"), rs.getString("tipo"));
+					vg.setId(id);
+					listaVehiculos.add(vg);
 				} else if (rs.getString("tipo").equalsIgnoreCase("Nave Marciana")) {
 					vg = new NaveMarciana (rs.getString("nombre"), rs.getInt("ataque"), rs.getInt("defensa"), rs.getString("tipo"));
+					vg.setId(id);
+					listaVehiculos.add(vg);
+					
+					
 				} else {
 					System.out.println("No existe naves en la base de datos");
 				}		
 			}
-	    } catch (SQLException e) {
-			System.err.println("Ha habido un error "+e.getMessage());
-//			e.printStackTrace();
-		}
+	    } 
 				
-		return vg;
+		return listaVehiculos;
 	}
 	
 }
