@@ -14,7 +14,10 @@ public class Terricola extends Guerrero {
 		super(nombre, "Terrícola", 6 , 4, vehiculoId);
 	}
 	
-
+	public Terricola(String nombre) throws LimiteValoresException {
+		super(nombre, "Terrícola", 6 , 4, 0);
+	}
+	
 
 	
 }

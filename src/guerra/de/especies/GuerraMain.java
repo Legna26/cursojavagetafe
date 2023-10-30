@@ -110,7 +110,7 @@ public class GuerraMain {
 		List<Guerrero> guerreros =null;
 		
 		try {
-			Terricola terricola1 = new Terricola ("A",6,4);
+			Terricola terricola1 = new Terricola ("A");
 			Terricola terricola2 = new Terricola ("B");
 			Terricola terricola3 = new Terricola ("C");
 			Terricola terricola4 = new Terricola ("D");
