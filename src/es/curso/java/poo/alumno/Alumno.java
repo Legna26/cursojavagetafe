@@ -59,10 +59,18 @@ public class Alumno {
 		this.nota = nota;
 	}
 
+	
 //	public String toString () {
 //		return "Nombre: " + nombre + ", Apellidos: " + apellidos + ", DNI: " + dni + ", Nota: " + nota;
 //	}
 	
+	@Override
+	public String toString() {
+		return "Alumno [" + (nombre != null ? "nombre=" + nombre + ", " : "")
+				+ (apellidos != null ? "apellidos=" + apellidos + ", " : "") + (dni != null ? "dni=" + dni + ", " : "")
+				+ "nota=" + nota + "]";
+	}
+
 	//Métodos
 	public void estudiar() {
 		
